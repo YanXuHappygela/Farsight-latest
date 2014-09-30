@@ -1,0 +1,15 @@
+-advection_scaling 1.0
+-curvature_scaling 0.5
+-max_iterations 800
+-rmsThreshold 0.02
+-min_object_size 0
+
+-sigma 2
+-numberOfIterations 30
+-noiseLevel 2000
+-outlierExpand 0
+
+
+-start_x 0
+-start_y 0
+-start_z 0

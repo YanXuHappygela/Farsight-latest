@@ -1,0 +1,30 @@
+PROJECT(Vessel)
+
+FIND_PACKAGE(OpenGL)
+IF(OPENGL_FOUND)
+  INCLUDE_DIRECTORIES(${OPENGL_INCLUDE_DIR})
+ELSE()
+  MESSAGE(FATAL_ERROR "Cannot build the Vessel Segmentation module without OpenGL.")
+ENDIF()
+
+IF(WIN32)
+  SET (GLUT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/freeglut/include")
+  SET (GLUT_glut_LIBRARY" ${CMAKE_SOURCE_DIR}/freeglut/lib/freeglut.lib")
+  SET (GLUT_LIBRARY ${GLUT_glut_LIBRARY} )
+#SET (GLUT_LIBRARIES "freeglut/lib/freeglut")
+ELSE(WIN32)
+  FIND_PACKAGE(GLUT)
+  IF(GLUT_FOUND)
+    SET (GLUT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/freeglut/include")
+    INCLUDE_DIRECTORIES(${GLUT_INCLUDE_DIR})
+  ELSE(GLUT_FOUND)
+    MESSAGE(FATAL_ERROR "Cannot build the Vessel Segmentation module without GLUT.")
+ENDIF(GLUT_FOUND)
+
+ENDIF(WIN32)
+
+INCLUDE_DIRECTORIES(Common)
+
+ADD_SUBDIRECTORY(Segmentation)
+ADD_SUBDIRECTORY(Visualization)
+ADD_SUBDIRECTORY(Centerline)
